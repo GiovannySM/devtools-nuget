@@ -1,0 +1,41 @@
+# BaGet - Feed NuGet privado (crear, publicar, consultar paquetes)
+# Uso: docker compose -f docker-compose.nuget.yml up -d
+#
+# Crear paquete:  dotnet pack -c Release
+# Publicar:       dotnet nuget push -s https://nuget.ingeovisualservices.cloud/v3/index.json -k TU_API_KEY mi-paquete.1.0.0.nupkg
+# Restaurar:      dotnet restore --source https://nuget.ingeovisualservices.cloud/v3/index.json
+# Añadir source:  dotnet nuget add source https://nuget.ingeovisualservices.cloud/v3/index.json -n IngeoNuget -u usuario -p TU_API_KEY
+
+name: telemetry-nuget
+
+services:
+  baget:
+    image: loicsharma/baget:latest
+    container_name: baget
+    environment:
+      - ApiKey=${NUGET_API_KEY:-NUGET-SERVER-API-KEY}
+      - Storage__Type=FileSystem
+      - Storage__Path=/var/baget/packages
+      - Database__Type=Sqlite
+      - Database__ConnectionString=Data Source=/var/baget/baget.db
+      - Search__Type=Database
+      - AllowPackageOverwrites=false
+    volumes:
+      - baget-data:/var/baget
+    networks:
+      - dokploy-network
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=dokploy-network"
+      - "traefik.http.routers.nuget.rule=Host(`nuget.ingeovisualservices.cloud`)"
+      - "traefik.http.routers.nuget.entrypoints=websecure"
+      - "traefik.http.routers.nuget.tls.certresolver=letsencrypt"
+      - "traefik.http.services.nuget.loadbalancer.server.port=80"
+    restart: unless-stopped
+
+networks:
+  dokploy-network:
+    external: true
+
+volumes:
+  baget-data:
