@@ -20,6 +20,7 @@ services:
       - Database__ConnectionString=Data Source=/var/baget/baget.db
       - Search__Type=Database
       - AllowPackageOverwrites=false
+      - PackageDeletionBehavior=Unlist
     volumes:
       - baget-data:/var/baget
     networks:
