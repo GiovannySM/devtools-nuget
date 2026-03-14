@@ -24,14 +24,9 @@ services:
       - baget-data:/var/baget
     networks:
       - dokploy-network
-    labels:
-      - "traefik.enable=true"
-      - "traefik.docker.network=dokploy-network"
-      - "traefik.http.routers.nuget.rule=Host(`nuget.ingeovisualservices.cloud`)"
-      - "traefik.http.routers.nuget.entrypoints=websecure"
-      - "traefik.http.routers.nuget.tls.certresolver=letsencrypt"
-      - "traefik.http.services.nuget.loadbalancer.server.port=80"
     restart: unless-stopped
+    ports:
+      - "80"
 
 networks:
   dokploy-network:
