@@ -21,8 +21,19 @@ services:
       - Search__Type=Database
       - AllowPackageOverwrites=false
       - PackageDeletionBehavior=Unlist
+      # Optimización de memoria .NET
+      - DOTNET_GCHeapHardLimit=400000000
+      - DOTNET_GCHeapHardLimitPercent=75
     volumes:
       - baget-data:/var/baget
+    deploy:
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: "512M"
+        reservations:
+          cpus: "0.25"
+          memory: "256M"
     networks:
       - dokploy-network
     restart: unless-stopped
