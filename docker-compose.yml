@@ -11,7 +11,7 @@ name: telemetry-nuget
 services:
   baget:
     image: loicsharma/baget:latest
-    container_name: baget
+    container_name: devtools-baget
     environment:
       - ApiKey=${NUGET_API_KEY:-NUGET-SERVER-API-KEY}
       - Storage__Type=FileSystem
