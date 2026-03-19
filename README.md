@@ -5,7 +5,7 @@ Feed NuGet privado para crear, publicar y consultar paquetes. Configurado para H
 ## Requisitos
 
 - Red `dokploy-network` (Traefik)
-- Subdominio: `nuget.ingeovisualservices.cloud`
+- Subdominio: `nuget.ingeovisualservices.com`
 
 ## Despliegue
 
@@ -18,5 +18,5 @@ docker compose up -d
 
 ## Uso
 
-- **Publicar:** `dotnet nuget push -s https://nuget.ingeovisualservices.cloud/v3/index.json -k TU_API_KEY paquete.nupkg`
-- **Restaurar:** `dotnet restore --source https://nuget.ingeovisualservices.cloud/v3/index.json`
+- **Publicar:** `dotnet nuget push -s https://nuget.ingeovisualservices.com/v3/index.json -k TU_API_KEY paquete.nupkg`
+- **Restaurar:** `dotnet restore --source https://nuget.ingeovisualservices.com/v3/index.json`

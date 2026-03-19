@@ -2,9 +2,9 @@
 # Uso: docker compose -f docker-compose.nuget.yml up -d
 #
 # Crear paquete:  dotnet pack -c Release
-# Publicar:       dotnet nuget push -s https://nuget.ingeovisualservices.cloud/v3/index.json -k TU_API_KEY mi-paquete.1.0.0.nupkg
-# Restaurar:      dotnet restore --source https://nuget.ingeovisualservices.cloud/v3/index.json
-# Añadir source:  dotnet nuget add source https://nuget.ingeovisualservices.cloud/v3/index.json -n IngeoNuget -u usuario -p TU_API_KEY
+# Publicar:       dotnet nuget push -s https://nuget.ingeovisualservices.com/v3/index.json -k TU_API_KEY mi-paquete.1.0.0.nupkg
+# Restaurar:      dotnet restore --source https://nuget.ingeovisualservices.com/v3/index.json
+# Añadir source:  dotnet nuget add source https://nuget.ingeovisualservices.com/v3/index.json -n IngeoNuget -u usuario -p TU_API_KEY
 
 name: telemetry-nuget
 
